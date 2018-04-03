@@ -8,6 +8,12 @@ public class Pensee {
 	protected int annee;
 	
 	
+	public Pensee(String auteur, String message) {
+		super();
+		this.auteur = auteur;
+		this.message = message;
+	}
+	
 	public int getId() {
 		return idPensee;
 	}
