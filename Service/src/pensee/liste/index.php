@@ -17,8 +17,8 @@ foreach($listePensees as $pensee)
 	//print_r($pensee);
 	?>
 	<pensee>
-		<auteur><?=$pensee->auteur?></auteur>
-		<message><?=$pensee->message?></message>
+		<auteur><?=utf8_encode($pensee->auteur)?></auteur>
+		<message><?=utf8_encode($pensee->message)?></message>
 		<annee><?=$pensee->annee?></annee>
 		<id><?=$pensee->idPensee?></id>
 	</pensee>
