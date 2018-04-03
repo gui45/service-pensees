@@ -9,10 +9,11 @@ public class App {
 
 		try {
 			URL urlListePensees = new URL("http://localhost/inspiration/src/pensee/liste/");
+			String derniereBalise = "</pensees>";
 			InputStream flux = urlListePensees.openConnection().getInputStream();
 			Scanner lecteur = new Scanner(flux);
-			lecteur.useDelimiter("\\A"); // delimiteur inexistant pour recuperer tout le flux
-			String xml = lecteur.next();
+			lecteur.useDelimiter(derniereBalise); 
+			String xml = lecteur.next() + derniereBalise;
 			System.out.println(xml);
 			
 		} catch (IOException e) {
