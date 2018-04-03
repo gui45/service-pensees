@@ -17,6 +17,10 @@ foreach($listePensees as $pensee)
 	//print_r($pensee);
 	?>
 	<pensee>
+		<auteur><?=$pensee->auteur?></auteur>
+		<message><?=$pensee->message?></message>
+		<annee><?=$pensee->annee?></annee>
+		<id><?=$pensee->idPensee?></id>
 	</pensee>
 	<?php	
 }
