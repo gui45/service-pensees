@@ -4,13 +4,11 @@
 	{
 		function listerPensees()
 		{			
-		/*
-			$LISTER_PENSEES = "SELECT * FROM pensees";
+			$LISTER_PENSEES = "SELECT * FROM pensee";
 			global $basededonnees;
 			$requeteListerPensees = $basededonnees->prepare($LISTER_PENSEES);
 			$requeteListerPensees->execute();
 			return $requeteListerPensees->fetchAll();
-			*/
 		}
 	}
 ?>
