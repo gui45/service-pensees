@@ -8,7 +8,7 @@
 			global $basededonnees;
 			$requeteListerPensees = $basededonnees->prepare($LISTER_PENSEES);
 			$requeteListerPensees->execute();
-			return $requeteListerPensees->fetchAll();
+			return $requeteListerPensees->fetchAll(PDO::FETCH_OBJ);
 		}
 	}
 ?>
