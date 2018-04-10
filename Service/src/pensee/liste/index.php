@@ -11,6 +11,7 @@ header("Content-type: text/xml");
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <pensees>
+	<nombre><?=count($listePensees)?></nombre>
 <?php
 foreach($listePensees as $pensee)
 {
@@ -22,7 +23,7 @@ foreach($listePensees as $pensee)
 		<annee><?=$pensee->annee?></annee>
 		<id><?=$pensee->idPensee?></id>
 	</pensee>
-	<?php	
+	<?php
 }
 ?>
 </pensees>
