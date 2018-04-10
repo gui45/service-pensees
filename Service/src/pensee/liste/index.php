@@ -13,13 +13,14 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <pensees>
 	<nombre><?=count($listePensees)?></nombre>
 <?php
+//utf8_encode()
 foreach($listePensees as $pensee)
 {
 	//print_r($pensee);
 	?>
 	<pensee>
-		<auteur><?=utf8_encode($pensee->auteur)?></auteur>
-		<message><?=utf8_encode($pensee->message)?></message>
+		<auteur><?=($pensee->auteur)?></auteur>
+		<message><?=($pensee->message)?></message>
 		<annee><?=$pensee->annee?></annee>
 		<id><?=$pensee->idPensee?></id>
 	</pensee>
