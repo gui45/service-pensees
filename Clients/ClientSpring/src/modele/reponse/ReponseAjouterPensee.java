@@ -2,6 +2,8 @@ package modele.reponse;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import modele.Pensee;
+
 @XmlRootElement(name="action")
 public class ReponseAjouterPensee {
 	
@@ -9,7 +11,14 @@ public class ReponseAjouterPensee {
 	protected int succes;
 	protected int moment;
 	protected String message;
+	protected Pensee pensee;
 	
+	public Pensee getPensee() {
+		return pensee;
+	}
+	public void setPensee(Pensee pensee) {
+		this.pensee = pensee;
+	}
 	public String getType() {
 		return type;
 	}
