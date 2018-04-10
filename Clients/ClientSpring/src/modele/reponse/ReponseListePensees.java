@@ -3,6 +3,7 @@ package modele.reponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import modele.Pensee;
@@ -22,6 +23,7 @@ public class ReponseListePensees {
 	
 	protected List<Pensee> listePensees = new ArrayList<Pensee>();
 
+	@XmlElement(name="pensee")
 	public List<Pensee> getListePensees() {
 		return listePensees;
 	}

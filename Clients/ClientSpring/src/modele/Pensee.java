@@ -7,6 +7,10 @@ public class Pensee {
 	protected String message;
 	protected int annee;
 	
+	public Pensee()
+	{
+		super();
+	}
 	
 	public Pensee(String auteur, String message) {
 		super();
