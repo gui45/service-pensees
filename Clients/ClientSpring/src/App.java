@@ -13,6 +13,9 @@ public class App {
 		{
 			System.out.println(pensee.getMessage());
 		}
+		
+		Pensee pensee = new Pensee();
+		penseeDAO.ajouterPensee(pensee);
 	}
 
 }
