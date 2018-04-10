@@ -18,6 +18,11 @@ public class App {
 		List<Pensee> listePensees = reponse.getListePensees();
 		System.out.println("La reponse a " + listePensees.size() + " objets");
 		
+		for(Pensee pensee : listePensees)
+		{
+			System.out.println(pensee.getMessage());
+		}
+		
 	}
 
 }
