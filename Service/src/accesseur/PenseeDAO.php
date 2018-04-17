@@ -10,5 +10,10 @@
 			$requeteListerPensees->execute();
 			return $requeteListerPensees->fetchAll(PDO::FETCH_OBJ);
 		}
+		
+		function ajouterPensee($pensee)
+		{
+			
+		}
 	}
 ?>
