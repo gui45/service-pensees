@@ -1,6 +1,10 @@
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.StringBufferInputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,19 +74,46 @@ public class App {
 				pensee.setId(Integer.parseInt(id));
 				listePensees.add(pensee);
 			}
-			
 		} 
 		catch (ParserConfigurationException e) 
 		{	
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		
+		
+		try {
+			URL urlAjouterPensee = new URL("http://localhost/inspiration/src/pensee/ajouter/");
+			HttpURLConnection envoyeur = (HttpURLConnection) urlAjouterPensee.openConnection();
+			envoyeur.setDoOutput(true);
+			envoyeur.setRequestMethod("POST");
+			
+			OutputStream fluxEcriture = envoyeur.getOutputStream();
+			OutputStreamWriter imprimeur = new OutputStreamWriter(fluxEcriture);
+			
+			
+			
+			InputStream fluxLecture = envoyeur.getInputStream();
+			Scanner lecteur = new Scanner(fluxLecture);
+			
+			
+			
+			
+			
+			
+
+			
+		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 
 	}
+	
 
 }
