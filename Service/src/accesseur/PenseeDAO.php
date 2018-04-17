@@ -19,6 +19,16 @@
 			$SQL_AJOUTER_PENSEE = "INSERT into pensee(auteur, message, annee) VALUES('$pensee->auteur','$pensee->message','$pensee->annee')";
 			
 			echo $SQL_AJOUTER_PENSEE;
+			global $basededonnees;
+			print_r($basededonnees);
+			
+			$requeteAjouterPensee = $basededonnees->prepare($SQL_AJOUTER_PENSEE);
+			$reussite = $requeteAjouterPensee->execute();
+			
+			echo "Code erreur : " . $basededonnees->errorCode();
+			echo "Erreurs : ";
+			print_r($basededonnees->errorInfo());
+			return $reussite;
 		}
 	}
 ?>
