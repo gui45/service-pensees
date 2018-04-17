@@ -35,6 +35,7 @@ public class App {
 			Scanner lecteur = new Scanner(flux);
 			lecteur.useDelimiter(derniereBalise); 
 			xml = lecteur.next() + derniereBalise;
+			lecteur.close();
 			//System.out.println(xml);			
 			
 		} catch (IOException e) {
@@ -87,24 +88,30 @@ public class App {
 		
 		try {
 			URL urlAjouterPensee = new URL("http://localhost/inspiration/src/pensee/ajouter/");
-			HttpURLConnection envoyeur = (HttpURLConnection) urlAjouterPensee.openConnection();
-			envoyeur.setDoOutput(true);
-			envoyeur.setRequestMethod("POST");
+			HttpURLConnection connection = (HttpURLConnection) urlAjouterPensee.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestMethod("POST");
 			
-			OutputStream fluxEcriture = envoyeur.getOutputStream();
-			OutputStreamWriter imprimeur = new OutputStreamWriter(fluxEcriture);
+			OutputStream fluxEcriture = connection.getOutputStream();
+			OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);
+			
+			envoyeur.write("test=coucou&truc=patente");
+			envoyeur.close();
+			
+			int codeReponse = connection.getResponseCode();
+			System.out.println("Code de réponse " + codeReponse);
 			
 			
-			
-			InputStream fluxLecture = envoyeur.getInputStream();
+			InputStream fluxLecture = connection.getInputStream();
 			Scanner lecteur = new Scanner(fluxLecture);
 			
+			String derniereBalise = "</action>";
+			lecteur.useDelimiter(derniereBalise);
+			xml = lecteur.next() + derniereBalise;
+			lecteur.close();
+			System.out.println(xml); // prouve que le script a bien recu les donnees en POST
 			
-			
-			
-			
-			
-
+			connection.disconnect();
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
