@@ -3,7 +3,15 @@
 	include "../../accesseur/PenseeDAO.php";
 	$penseeDAO = new PenseeDAO();
 	//print_r($penseeDAO);
-	$penseeDAO->ajouterPensee(new stdClass());
+	
+	//filter_var_array - $_POST - FILTER_SANITIZE_STRING
+	
+	$pensee = new stdClass();
+	$pensee->auteur = $_POST['auteur'];
+	$pensee->message = $_POST['message'];
+	$pensee->annee = $_POST['annee'];
+	
+	$penseeDAO->ajouterPensee($pensee);
 ?><?php 
 
 header("Content-type: text/xml");
