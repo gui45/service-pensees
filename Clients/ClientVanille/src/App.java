@@ -87,6 +87,7 @@ public class App {
 		
 		
 		try {
+			Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu’une œuvre inachevée, c’est une œuvre jamais commencée.");
 			
 			URL urlAjouterPensee = new URL("http://localhost/inspiration/src/pensee/ajouter/");
 			HttpURLConnection connection = (HttpURLConnection) urlAjouterPensee.openConnection();
@@ -98,7 +99,7 @@ public class App {
 			OutputStream fluxEcriture = connection.getOutputStream();
 			OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);
 			
-			envoyeur.write("test=coucou&truc=patente");
+			envoyeur.write("auteur="+pensee.getAuteur()+"&message="+pensee.getMessage()+"&annee=" + pensee.getAnnee());
 			envoyeur.close();
 			
 			int codeReponse = connection.getResponseCode();
