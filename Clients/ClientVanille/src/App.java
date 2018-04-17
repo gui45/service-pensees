@@ -87,10 +87,13 @@ public class App {
 		
 		
 		try {
+			
 			URL urlAjouterPensee = new URL("http://localhost/inspiration/src/pensee/ajouter/");
 			HttpURLConnection connection = (HttpURLConnection) urlAjouterPensee.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
+			//connection.setRequestProperty("User-Agent", "Java client");
+	        //connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			
 			OutputStream fluxEcriture = connection.getOutputStream();
 			OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);
@@ -100,7 +103,6 @@ public class App {
 			
 			int codeReponse = connection.getResponseCode();
 			System.out.println("Code de réponse " + codeReponse);
-			
 			
 			InputStream fluxLecture = connection.getInputStream();
 			Scanner lecteur = new Scanner(fluxLecture);
@@ -116,7 +118,6 @@ public class App {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 
