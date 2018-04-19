@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +29,13 @@ public class App {
 	public static void main(String[] args) {
 		
 		PenseeDAO penseeDAO = new PenseeDAO();
-		penseeDAO.listerPensees();
+		List<Pensee> listePensees = penseeDAO.listerPensees();
+		
+		for(Iterator<Pensee> visiteur = listePensees.iterator(); visiteur.hasNext(); )
+		{
+			Pensee pensee = visiteur.next();		
+			System.out.println(pensee.getMessage() + "(" + pensee.getAuteur() + ")");
+		}
 
 		//Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu une oeuvre inachevee, c est une oeuvre jamais commencee.");
 		//penseeDAO.ajouterPensee(pensee);

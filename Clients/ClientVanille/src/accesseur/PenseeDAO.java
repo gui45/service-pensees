@@ -65,10 +65,10 @@ public class PenseeDAO {
 				String message = noeudPensee.getElementsByTagName("message").item(0).getTextContent();
 				String annee = noeudPensee.getElementsByTagName("annee").item(0).getTextContent();
 				
-				System.out.println("Id : " + id);
-				System.out.println("Auteur : " + auteur);
-				System.out.println("Message : " + message);
-				System.out.println("Annee : " + annee);
+				//System.out.println("Id : " + id);
+				//System.out.println("Auteur : " + auteur);
+				//System.out.println("Message : " + message);
+				//System.out.println("Annee : " + annee);
 				
 				Pensee pensee = new Pensee(auteur, message);
 				//pensee.setAnnee(Integer.parseInt(annee));
