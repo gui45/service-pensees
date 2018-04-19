@@ -15,12 +15,13 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import outils.Journal;
+import outils.JournalDesactivable;
 
 public class DecodeurPenseesXML {
 
 	public List<Pensee> decoderListe(String xml)
 	{
-		Journal.ecrire("decoderListe()");
+		JournalDesactivable.ecrire("decoderListe()");
 		List<Pensee> listePensees = new ArrayList<Pensee>();
 
 		try 
@@ -29,7 +30,7 @@ public class DecodeurPenseesXML {
 			@SuppressWarnings("deprecation")
 			Document document = parseur.parse(new StringBufferInputStream(xml));
 			String racine = document.getDocumentElement().getNodeName();
-			Journal.ecrire("Racine=" + racine);
+			Journal.ecrire(3, "Racine=" + racine);
 					
 			NodeList listeNoeudsPensees = document.getElementsByTagName("pensee");
 			for(int position = 0; position < listeNoeudsPensees.getLength(); position++)// TODO : veille sur s'il devient iterable
@@ -41,10 +42,10 @@ public class DecodeurPenseesXML {
 				String message = noeudPensee.getElementsByTagName("message").item(0).getTextContent();
 				String annee = noeudPensee.getElementsByTagName("annee").item(0).getTextContent();
 				
-				Journal.ecrire("Id : " + id);
-				Journal.ecrire("Auteur : " + auteur);
-				Journal.ecrire("Message : " + message);
-				Journal.ecrire("Annee : " + annee);
+				Journal.ecrire(3,"Id : " + id);
+				Journal.ecrire(3,"Auteur : " + auteur);
+				Journal.ecrire(3,"Message : " + message);
+				Journal.ecrire(3,"Annee : " + annee);
 				
 				Pensee pensee = new Pensee(auteur, message);
 				//pensee.setAnnee(Integer.parseInt(annee));
@@ -66,7 +67,7 @@ public class DecodeurPenseesXML {
 	
 	public boolean decoderReponseAction(String xml)
 	{
-		Journal.ecrire("xml" + xml); // prouve que le script a bien recu les donnees en POST
+		Journal.ecrire(3, "xml" + xml); // prouve que le script a bien recu les donnees en POST
 
 		return true;
 	}

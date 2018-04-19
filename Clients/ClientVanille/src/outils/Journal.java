@@ -2,12 +2,15 @@ package outils;
 
 public class Journal {
 	
-	protected static boolean actif = false;
-	public static void activer() {Journal.actif = true;}
-	public static void desactiver() {Journal.actif = false;}
+	protected static int niveau = 0;
 	
-	public static void ecrire(String message)
+	public static void activerNiveau(int niveau)
 	{
-		if(Journal.actif) System.out.println(message);
+		Journal.niveau = niveau;
+	}
+	
+	public static void ecrire(int niveau,String message)
+	{
+		if(niveau >= Journal.niveau) System.out.println(message);
 	}
 }

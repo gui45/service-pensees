@@ -23,13 +23,15 @@ import org.xml.sax.SAXException;
 
 import accesseur.PenseeDAO;
 import modele.Pensee;
+import outils.JournalDesactivable;
 import outils.Journal;
 
 public class App {
 
 	public static void main(String[] args) {
 
-		Journal.activer();
+		//Journal.activer();
+		Journal.activerNiveau(0);
 		
 		PenseeDAO penseeDAO = new PenseeDAO();
 		List<Pensee> listePensees = penseeDAO.listerPensees();
@@ -37,7 +39,7 @@ public class App {
 		for(Iterator<Pensee> visiteur = listePensees.iterator(); visiteur.hasNext(); )
 		{
 			Pensee pensee = visiteur.next();		
-			Journal.ecrire(pensee.getMessage() + "(" + pensee.getAuteur() + ")");
+			Journal.ecrire(5, pensee.getMessage() + "(" + pensee.getAuteur() + ")");
 		}
 
 		Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu une oeuvre inachevee, c est une oeuvre jamais commencee.");
