@@ -37,8 +37,8 @@ public class App {
 			System.out.println(pensee.getMessage() + "(" + pensee.getAuteur() + ")");
 		}
 
-		//Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu une oeuvre inachevee, c est une oeuvre jamais commencee.");
-		//penseeDAO.ajouterPensee(pensee);
+		Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu une oeuvre inachevee, c est une oeuvre jamais commencee.");
+		penseeDAO.ajouterPensee(pensee);
 
 	}
 	
