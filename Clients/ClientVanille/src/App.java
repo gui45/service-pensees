@@ -20,74 +20,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import accesseur.PenseeDAO;
 import modele.Pensee;
 
 public class App {
 
 	public static void main(String[] args) {
+		
+		PenseeDAO penseeDAO = new PenseeDAO();
+		penseeDAO.listerPensees();
 
-		String xml = null;
 		
+		String xml;
 		try {
-			URL urlListePensees = new URL("http://localhost/inspiration/src/pensee/liste/");
-			String derniereBalise = "</pensees>";
-			InputStream flux = urlListePensees.openConnection().getInputStream();
-			Scanner lecteur = new Scanner(flux);
-			lecteur.useDelimiter(derniereBalise); 
-			xml = lecteur.next() + derniereBalise;
-			lecteur.close();
-			//System.out.println(xml);			
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		if(null == xml) return;
-		
-		
-		try 
-		{
-			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			@SuppressWarnings("deprecation")
-			Document document = parseur.parse(new StringBufferInputStream(xml));
-			String racine = document.getDocumentElement().getNodeName();
-			//System.out.println(racine);
-		
-			
-			List<Pensee> listePensees = new ArrayList<Pensee>();
-			NodeList listeNoeudsPensees = document.getElementsByTagName("pensee");
-			for(int position = 0; position < listeNoeudsPensees.getLength(); position++)// TODO : veille sur s'il devient iterable
-			{
-				//Node noeudPensee = listePensees.item(position);
-				Element noeudPensee = (Element)listeNoeudsPensees.item(position);
-				String id = noeudPensee.getElementsByTagName("id").item(0).getTextContent();
-				String auteur = noeudPensee.getElementsByTagName("auteur").item(0).getTextContent();
-				String message = noeudPensee.getElementsByTagName("message").item(0).getTextContent();
-				String annee = noeudPensee.getElementsByTagName("annee").item(0).getTextContent();
-				
-				System.out.println("Id : " + id);
-				System.out.println("Auteur : " + auteur);
-				System.out.println("Message : " + message);
-				System.out.println("Annee : " + annee);
-				
-				Pensee pensee = new Pensee(auteur, message);
-				//pensee.setAnnee(Integer.parseInt(annee));
-				pensee.setId(Integer.parseInt(id));
-				listePensees.add(pensee);
-			}
-		} 
-		catch (ParserConfigurationException e) 
-		{	
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-		
-		
-		try {
-			Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu’une œuvre inachevée, c’est une œuvre jamais commencée.");
+			Pensee pensee = new Pensee("Rossetti","Ce qui est plus triste qu une oeuvre inachevee, c est une oeuvre jamais commencee.");
 			
 			URL urlAjouterPensee = new URL("http://localhost/inspiration/src/pensee/ajouter/");
 			HttpURLConnection connection = (HttpURLConnection) urlAjouterPensee.openConnection();
@@ -126,3 +72,30 @@ public class App {
 	
 
 }
+
+/*
+ * 
+ 
+Code de réponse 200
+ajouterPensee()
+stdClass Object
+(
+    [auteur] => Rossetti
+    [message] => Ce qui est plus triste qu’une œuvre inachevée, c’est une œuvre jamais commencée.
+    [annee] => 0
+)
+<?xml version="1.0" encoding="UTF-8"?><action>
+	<type>ajouter</type>
+	<moment>1523972018</moment>
+	<succes>1</succes>
+	<message>POST : Array
+(
+    [auteur] => Rossetti
+    [message] => Ce qui est plus triste qu’une œuvre inachevée, c’est une œuvre jamais commencée.
+    [annee] => 0
+)
+</message>
+</action>
+ 
+ *
+ */
