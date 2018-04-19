@@ -26,6 +26,8 @@ import modele.Pensee;
 
 public class PenseeDAO implements PenseeURL{
 
+	protected DecodeurPenseesXML decodeur = new DecodeurPenseesXML();	
+	
 	public List<Pensee> listerPensees()
 	{
 		String xml = null;		
@@ -46,13 +48,12 @@ public class PenseeDAO implements PenseeURL{
 		
 		if(null == xml) return null;
 		
-		DecodeurPenseesXML decodeur = new DecodeurPenseesXML();
 		return decodeur.decoderListe(xml);
 	}
 	
 	public void ajouterPensee(Pensee pensee)
 	{
-		String xml;
+		String xml = "";
 		try {
 						
 			URL urlAjouterPensee = new URL(URL_AJOUTER_PENSEE);
@@ -78,8 +79,6 @@ public class PenseeDAO implements PenseeURL{
 			lecteur.useDelimiter(derniereBalise);
 			xml = lecteur.next() + derniereBalise;
 			lecteur.close();
-			System.out.println(xml); // prouve que le script a bien recu les donnees en POST
-			
 			connection.disconnect();
 			
 		} catch (MalformedURLException e) {
@@ -87,6 +86,8 @@ public class PenseeDAO implements PenseeURL{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+		
+		decodeur.decoderReponseAction(xml);
 
 	}
 }

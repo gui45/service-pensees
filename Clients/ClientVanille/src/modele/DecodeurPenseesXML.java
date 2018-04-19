@@ -61,4 +61,11 @@ public class DecodeurPenseesXML {
 		
 	}
 	
+	public boolean decoderReponseAction(String xml)
+	{
+		System.out.println(xml); // prouve que le script a bien recu les donnees en POST
+
+		return true;
+	}
+	
 }
