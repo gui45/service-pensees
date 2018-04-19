@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import modele.DecodeurPenseesXML;
 import modele.Pensee;
+import outils.Journal;
 
 public class PenseeDAO implements PenseeURL{
 
@@ -18,6 +19,7 @@ public class PenseeDAO implements PenseeURL{
 	
 	public List<Pensee> listerPensees()
 	{
+		Journal.ecrire("listerPensees()");			
 		String xml = null;		
 		
 		try {
@@ -28,7 +30,7 @@ public class PenseeDAO implements PenseeURL{
 			lecteur.useDelimiter(derniereBalise); 
 			xml = lecteur.next() + derniereBalise;
 			lecteur.close();
-			//System.out.println(xml);			
+			Journal.ecrire("xml : " + xml);			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -41,6 +43,7 @@ public class PenseeDAO implements PenseeURL{
 	
 	public void ajouterPensee(Pensee pensee)
 	{
+		Journal.ecrire("ajouterPensee()");			
 		String xml = "";
 		try {
 						
@@ -58,7 +61,7 @@ public class PenseeDAO implements PenseeURL{
 			envoyeur.close();
 			
 			int codeReponse = connection.getResponseCode();
-			System.out.println("Code de réponse " + codeReponse);
+			Journal.ecrire("Code de réponse " + codeReponse);
 			
 			InputStream fluxLecture = connection.getInputStream();
 			Scanner lecteur = new Scanner(fluxLecture);

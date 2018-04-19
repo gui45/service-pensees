@@ -14,10 +14,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import outils.Journal;
+
 public class DecodeurPenseesXML {
 
 	public List<Pensee> decoderListe(String xml)
 	{
+		Journal.ecrire("decoderListe()");
 		List<Pensee> listePensees = new ArrayList<Pensee>();
 
 		try 
@@ -26,7 +29,7 @@ public class DecodeurPenseesXML {
 			@SuppressWarnings("deprecation")
 			Document document = parseur.parse(new StringBufferInputStream(xml));
 			String racine = document.getDocumentElement().getNodeName();
-			//System.out.println(racine);
+			Journal.ecrire("Racine=" + racine);
 					
 			NodeList listeNoeudsPensees = document.getElementsByTagName("pensee");
 			for(int position = 0; position < listeNoeudsPensees.getLength(); position++)// TODO : veille sur s'il devient iterable
@@ -38,10 +41,10 @@ public class DecodeurPenseesXML {
 				String message = noeudPensee.getElementsByTagName("message").item(0).getTextContent();
 				String annee = noeudPensee.getElementsByTagName("annee").item(0).getTextContent();
 				
-				//System.out.println("Id : " + id);
-				//System.out.println("Auteur : " + auteur);
-				//System.out.println("Message : " + message);
-				//System.out.println("Annee : " + annee);
+				Journal.ecrire("Id : " + id);
+				Journal.ecrire("Auteur : " + auteur);
+				Journal.ecrire("Message : " + message);
+				Journal.ecrire("Annee : " + annee);
 				
 				Pensee pensee = new Pensee(auteur, message);
 				//pensee.setAnnee(Integer.parseInt(annee));
@@ -63,7 +66,7 @@ public class DecodeurPenseesXML {
 	
 	public boolean decoderReponseAction(String xml)
 	{
-		System.out.println(xml); // prouve que le script a bien recu les donnees en POST
+		Journal.ecrire("xml" + xml); // prouve que le script a bien recu les donnees en POST
 
 		return true;
 	}
