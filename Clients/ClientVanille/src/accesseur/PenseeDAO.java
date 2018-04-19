@@ -25,12 +25,15 @@ import modele.Pensee;
 
 public class PenseeDAO {
 
+	public static final String URL_AJOUTER_PENSEE = "http://localhost/inspiration/src/pensee/ajouter/";
+	public static final String URL_LISTE_PENSEES = "http://localhost/inspiration/src/pensee/liste/";
+	
 	public List<Pensee> listerPensees()
 	{
-		String xml = null;
+		String xml = null;		
 		
 		try {
-			URL urlListePensees = new URL("http://localhost/inspiration/src/pensee/liste/");
+			URL urlListePensees = new URL(URL_LISTE_PENSEES);
 			String derniereBalise = "</pensees>";
 			InputStream flux = urlListePensees.openConnection().getInputStream();
 			Scanner lecteur = new Scanner(flux);
@@ -92,8 +95,8 @@ public class PenseeDAO {
 	{
 		String xml;
 		try {
-			
-			URL urlAjouterPensee = new URL("http://localhost/inspiration/src/pensee/ajouter/");
+						
+			URL urlAjouterPensee = new URL(URL_AJOUTER_PENSEE);
 			HttpURLConnection connection = (HttpURLConnection) urlAjouterPensee.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
