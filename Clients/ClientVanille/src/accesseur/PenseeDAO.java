@@ -20,7 +20,7 @@ public class PenseeDAO implements PenseeURL{
 	
 	public List<Pensee> listerPensees()
 	{
-		JournalDesactivable.ecrire("listerPensees()");			
+		//JournalDesactivable.ecrire("listerPensees()");			
 		String xml = null;		
 		
 		try {
@@ -31,7 +31,7 @@ public class PenseeDAO implements PenseeURL{
 			lecteur.useDelimiter(derniereBalise); 
 			xml = lecteur.next() + derniereBalise;
 			lecteur.close();
-			Journal.ecrire(2, "xml : " + xml);			
+			//Journal.ecrire(2, "xml : " + xml);			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class PenseeDAO implements PenseeURL{
 	
 	public void ajouterPensee(Pensee pensee)
 	{
-		Journal.ecrire(1, "ajouterPensee()");			
+		//Journal.ecrire(1, "ajouterPensee()");			
 		String xml = "";
 		try {
 						
@@ -62,7 +62,7 @@ public class PenseeDAO implements PenseeURL{
 			envoyeur.close();
 			
 			int codeReponse = connection.getResponseCode();
-			Journal.ecrire(2, "Code de réponse " + codeReponse);
+			//Journal.ecrire(2, "Code de réponse " + codeReponse);
 			
 			InputStream fluxLecture = connection.getInputStream();
 			Scanner lecteur = new Scanner(fluxLecture);
