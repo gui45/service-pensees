@@ -18,7 +18,45 @@ import outils.Journal;
 import outils.JournalDesactivable;
 
 public class DecodeurPenseesXML {
+	public Pensee decoderPensee(String xml)
+	{
+		JournalDesactivable.ecrire("decoderPensee()");
+		try 
+		{
+			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			@SuppressWarnings("deprecation")
+			Document document = parseur.parse(new StringBufferInputStream(xml));
+			String racine = document.getDocumentElement().getNodeName();
+			Journal.ecrire(3, "Racine=" + racine);
 
+				//Node noeudPensee = listePensees.item(position);
+				Element noeudPensee = document.getDocumentElement();
+				String id = noeudPensee.getElementsByTagName("id").item(0).getTextContent();
+				String auteur = noeudPensee.getElementsByTagName("auteur").item(0).getTextContent();
+				String message = noeudPensee.getElementsByTagName("message").item(0).getTextContent();
+				String annee = noeudPensee.getElementsByTagName("annee").item(0).getTextContent();
+
+				Journal.ecrire(3,"Id : " + id);
+				Journal.ecrire(3,"Auteur : " + auteur);
+				Journal.ecrire(3,"Message : " + message);
+				Journal.ecrire(3,"Annee : " + annee);
+
+				Pensee pensee = new Pensee(auteur, message);
+				//pensee.setAnnee(Integer.parseInt(annee));
+				pensee.setId(Integer.parseInt(id));
+				return pensee;
+		} 
+		catch (ParserConfigurationException e) 
+		{	
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+
+		return null;
+	}
 	public List<Pensee> decoderListe(String xml)
 	{
 		JournalDesactivable.ecrire("decoderListe()");

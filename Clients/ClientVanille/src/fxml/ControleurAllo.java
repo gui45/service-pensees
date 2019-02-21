@@ -11,20 +11,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import modele.Pensee;
+import javafx.scene.control.TextArea;
 
 public class ControleurAllo {
-	    @FXML private ListView<String> ListeInspiration;
-
-	    public ControleurAllo() {
-	    	PenseeDAO penseeDAO = new PenseeDAO();
-			List<Pensee> listePensees = penseeDAO.listerPensees();
-			Iterator<Pensee> iterateur = listePensees.iterator();
-			ObservableList<String> liste = ListeInspiration.getItems();
-			while(iterateur.hasNext()) {
-				Pensee pensee = iterateur.next();
-				String penseeString = pensee.getAnnee() + " " + pensee.getAuteur() + " : " + pensee.getMessage();
-				liste.add("penseeString");
-				System.out.println(penseeString);
-			}
-	    }
+	
+    @FXML
+    private TextArea listePensee;
+	public ControleurAllo() {
+		PenseeDAO dao = new PenseeDAO();
+		
+		Pensee pensee = dao.chargerPenseeAleatoire();
+		VueAllo.getInstance().afficherPensee(pensee);
+	}
+    @FXML
+    void trouverInspiration(ActionEvent event) {
+    	VueAllo.getInstance().setText(listePensee);
+    	PenseeDAO penseeDAO = new PenseeDAO();
+    	Pensee pensee = penseeDAO.chargerPenseeAleatoire();
+		VueAllo.getInstance().afficherPensee(pensee);
+    }
 }

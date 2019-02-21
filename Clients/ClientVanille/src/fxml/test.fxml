@@ -9,7 +9,17 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.ControleurAllo">
-   <children>
-      <ListView fx:id="ListeInspiration" prefHeight="400.0" prefWidth="600.0" />
-   </children>
+    <children>
+    <BorderPane layoutX="164.0" layoutY="39.0" prefHeight="500.0" prefWidth="364.0">
+      <bottom>
+        <Button mnemonicParsing="false" onAction="#trouverInspiration" prefWidth="364.0" text="Trouver une inspiration" />
+      </bottom>
+      <center>
+        <TextArea id="listePensees" fx:id="listePensee" prefHeight="400.0" prefWidth="200.0" style=" -fx-border-color: brown ;  &#10; -fx-border-width: 2px ;  &#10;-fx-control-inner-background: orange;" wrapText="true" />
+      </center>
+      <top>
+        <TextArea prefHeight="67.0" prefWidth="364.0" style="-fx-font-size: 40pt;&#10;-fx-font-weight:bold;&#10;-fx-text-fill:brown;" text="Pensée du jour" wrapText="true" />
+      </top>
+    </BorderPane>
+  </children>
 </AnchorPane>
